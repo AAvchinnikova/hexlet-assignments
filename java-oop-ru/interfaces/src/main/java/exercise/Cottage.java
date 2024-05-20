@@ -2,8 +2,8 @@ package exercise;
 
 // BEGIN
 public class Cottage implements Home{
-   private double area;
-   private int floorCount;
+   private final double area;
+   private final int floorCount;
 
     public Cottage(double area, int floorCount) {
         this.area = area;
@@ -17,7 +17,7 @@ public class Cottage implements Home{
 
     @Override
     public int compareTo(Home anotherHome) {
-        int resultCompare = 0;
+        int resultCompare;
         if (getArea() > anotherHome.getArea()) {
             resultCompare = 1;
         } else if (getArea() == anotherHome.getArea()) {
