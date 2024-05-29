@@ -1,34 +1,37 @@
 package exercise;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.HashMap;
 
 // BEGIN
 public class InMemoryKV implements KeyValueStorage{
-    private final Map<String, String> data;
 
-    public InMemoryKV(Map<String, String > data) {
-        this.data = data;
+    private Map<String, String > storage;
+
+    public InMemoryKV(Map<String, String> storage) {
+        this.storage = new HashMap<>(storage);
     }
 
     @Override
     public void set(String key, String value) {
-       data.put(key, value);
+        storage.put(key, value);
     }
 
     @Override
     public void unset(String key) {
-        String removed = data.remove(key);
-
+        storage.remove(key);
     }
 
     @Override
     public String get(String key, String defaultValue) {
-        return data.getOrDefault(key, defaultValue);
+        return storage.getOrDefault(key, defaultValue);
     }
 
     @Override
     public Map<String, String> toMap() {
-        return Map.of();
+       Map<String, String> storage2 = new HashMap<>(storage);
+       return  storage2;
     }
 }
 // END

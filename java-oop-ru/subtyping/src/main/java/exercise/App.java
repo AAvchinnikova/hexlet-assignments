@@ -1,19 +1,17 @@
 package exercise;
 
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 // BEGIN
 public class App {
 
-    public static Map<String, String> swapKeyValue(KeyValueStorage object) {
-        var result = object.toMap();
-        KeyValueStorage storage = new InMemoryKV(Map.of("key", "value"));
-        result.forEach((key, value) -> {
-            object.set(value, key);
-            object.unset(key);
-        });
-        System.out.println(storage.toMap());
-        return object.toMap();
+    public static void swapKeyValue(KeyValueStorage storage) {
+        Map<String, String> data = storage.toMap();
+        Set<Entry<String, String>> entries = data.entrySet();
+        entries.forEach(entry -> storage.unset(entry.getKey()));
+        entries.forEach(entry -> storage.set(entry.getValue(), entry.getKey()));
     }
 }
 // END
