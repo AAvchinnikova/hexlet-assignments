@@ -1,9 +1,9 @@
 package exercise;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 
 // BEGIN
 public class Validator {
