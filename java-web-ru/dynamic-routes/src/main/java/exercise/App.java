@@ -3,6 +3,7 @@ package exercise;
 import io.javalin.Javalin;
 import io.javalin.http.NotFoundResponse;
 import io.javalin.http.Context;
+import io.javalin.validation.ValidationException;
 
 import javax.swing.plaf.LabelUI;
 import java.util.ArrayList;
@@ -35,14 +36,14 @@ public final class App {
                         result.put("id", company.get("id"));
                     }
                 }
-                if (result.isEmpty()) {
-                    ctx.status(404);
-                    ctx.contentType("text/plain");
-                    ctx.result("error");
-                }
 
-            ctx.json(result);
-                });
+                COMPANIES.stream().filter(company -> company.get("id").equals(id))
+                        .findFirst().orElseThrow(
+                                () -> new NotFoundResponse("Company not found")
+                        );
+                ctx.json(result);
+
+        });
 
         // END
 
