@@ -17,7 +17,6 @@ public class Data {
         for (int i = 0; i < ITEMS_COUNT; i++) {
             phones.add(faker.phoneNumber().cellPhone());
         }
-
         return phones;
     }
 
@@ -27,7 +26,6 @@ public class Data {
         for (int i = 0; i < ITEMS_COUNT; i++) {
             domains.add(faker.internet().domainName());
         }
-
         return domains;
     }
 }
