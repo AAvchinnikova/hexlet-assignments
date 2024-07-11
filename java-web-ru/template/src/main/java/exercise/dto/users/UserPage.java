@@ -13,8 +13,5 @@ import java.util.List;
 public class UserPage {
     private User user;
 
-    public User getUser(List<User> users) {
-        return users.stream().findAny().get();
-    }
 }
 // END

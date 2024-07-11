@@ -16,14 +16,6 @@
     <div class="mx-auto p-4 py-md-5">
       <main>
             <a href="/users">Пользователи</a>
-        <table>
-          @for(var user : page.getUsers())
-          <tr> ${user.getFirstName()}</tr>
-          <td> "name" </td>
-          <tr>${user.getLastName()}</tr>
-          <td>"sdggd</td>
-          @endfor
-        </table>
       </main>
     </div>
   </body>

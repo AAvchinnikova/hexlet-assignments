@@ -28,8 +28,9 @@ public final class App {
         });
         app.get("/users/{id}", ctx -> {
             var id = ctx.pathParam("id");
-            var page2 = USERS.stream().findAny().get(); //???
-            ctx.render("show.jte", model("page, page2"));
+            var userById = USERS.stream().filter(user -> user.getId() == Long.valueOf(id)).findFirst().get();
+            var page2 = new UserPage(userById);
+            ctx.render("show.jte", model("page", page2));
         });
 
         // END
