@@ -24,13 +24,13 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             var page = new UsersPage(USERS); //????
-            ctx.render("index.jte", model("page", page)); //????
+            ctx.render("users/index.jte", model("page", page)); //????
         });
         app.get("/users/{id}", ctx -> {
             var id = ctx.pathParam("id");
             var userById = USERS.stream().filter(user -> user.getId() == Long.valueOf(id)).findFirst().get();
             var page2 = new UserPage(userById);
-            ctx.render("show.jte", model("page", page2));
+            ctx.render("users/show.jte", model("page", page2));
         });
 
         // END
