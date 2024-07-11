@@ -28,9 +28,13 @@ public final class App {
         });
         app.get("/users/{id}", ctx -> {
             var id = ctx.pathParam("id");
-            var userById = USERS.stream().filter(user -> user.getId() == Long.valueOf(id)).findFirst().get();
-            var page2 = new UserPage(userById);
-            ctx.render("users/show.jte", model("page", page2));
+            var user = USERS.stream().
+                    filter(user2 -> user2.getId() == Long.valueOf(id).longValue())
+                    .findFirst().get();
+
+            var page2 = new UserPage(user);
+
+            ctx.render("users/show.jte", model("page2", page2));
         });
 
         // END

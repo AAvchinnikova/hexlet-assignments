@@ -17,12 +17,22 @@
     <main>
         <a href="/users">Пользователи</a>
         <table>
+            <thead>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>id</th>
+            <th>email</th>
+            </thead>
+            <tbody>
             @for(var user : page.getUsers())
-                <tr> ${user.getFirstName()}</tr>
-                <td> "name" </td>
-                <tr>${user.getLastName()}</tr>
-                <td>"sdggd</td>
+            <tr>
+                <td><a href="/users/${user.getId()}">${user.getFirstName()}</a></td>
+                <td>${user.getLastName()}  </td>
+                <td>${user.getId()}  </td>
+                <td>${user.getEmail()}  </td>
+            </tr>
             @endfor
+            </tbody>
         </table>
     </main>
 </div>

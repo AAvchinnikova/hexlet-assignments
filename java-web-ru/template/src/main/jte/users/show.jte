@@ -15,13 +15,24 @@
 <body>
 <div class="mx-auto p-4 py-md-5">
     <main>
-        <a href="/user/{id}">Пользовател</a>
-        <h1>
-            ${page2.getUser().getFirstName()} ${page2.getUser().getLastName()}
-        </h1>
-        <h2>${page2.getUser().getId()}</h2>
-        <h2>${page2.getUser().getEmail()}</h2>
-    </main>
+        <>
+            <table>
+                <thead>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>id</th>
+                <th>email</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${page2.getUser().getFirstName()}</td>
+                        <td>${page2.getUser().getLastName()}  </td>
+                        <td>${page2.getUser().getEmail()}  </td>
+                        <td> </td>
+                    </tr>
+                </tbody>
+            </table>
+    </main>>
 </div>
 </body>
 </html>
