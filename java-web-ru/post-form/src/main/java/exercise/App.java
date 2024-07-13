@@ -30,7 +30,20 @@ public final class App {
         });
 
         // BEGIN
-        
+        app.get("/users/build", ctx -> {
+            ctx.render("users/build.jte");
+        });
+
+        app.post("/users", ctx -> {
+           var firstName = ctx.formParam("firstName").toUpperCase();
+           var lastName = ctx.formParam("lastName").toUpperCase();
+           var email = ctx.formParam("email").trim().toLowerCase();
+           var password = ctx.formParam("password");
+           Security.encrypt(password);
+           var user = new User(firstName, lastName, email, password);
+           UserRepository.save(user);
+           ctx.redirect("/users");
+        });
         // END
 
         return app;
