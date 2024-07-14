@@ -1,6 +1,8 @@
 @import exercise.dto.articles.BuildArticlePage
 @param BuildArticlePage page
 
+@template.layout.page(
+content = @`
 @if(page.getErrors() != null)
     <ul>
         @for(var validator : page.getErrors().values())
@@ -21,9 +23,10 @@
     <div>
         <label>
             Content
-            <input type="content" required name="content" value="${page.getContent()}" />
-            <textarea></textarea>
+            <textarea required name="content" rows="5" cols="25" value="${page.getContent()}"></textarea>
         </label>
     </div>
     <input type="submit" value="Зарегистрировать" />
 </form>
+`
+)

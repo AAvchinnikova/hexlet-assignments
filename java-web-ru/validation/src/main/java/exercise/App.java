@@ -22,9 +22,7 @@ public final class App {
             config.fileRenderer(new JavalinJte());
         });
 
-        app.get("/", ctx -> {
-            ctx.render("index.jte");
-        });
+        app.get("/", ctx -> ctx.render("index.jte"));
 
         app.get("/articles", ctx -> {
             List<Article> articles = ArticleRepository.getEntities();
@@ -35,7 +33,7 @@ public final class App {
         // BEGIN
         app.get("/articles/build", ctx -> {
             var page = new BuildArticlePage();
-            ctx.render("user/build.jte", Collections.singletonMap("page", page));
+            ctx.render("articles/build.jte", Collections.singletonMap("page", page));
         });
 
         app.post("/articles", ctx -> {
@@ -43,10 +41,12 @@ public final class App {
             var content = ctx.formParam("content");
             try {
                 ctx.formParamAsClass("title", String.class)
-                        .check(value -> value.length() >= 2, "Название не должно быть короче двух символов")
-                        .check(value -> ArticleRepository.findByTitle(value).isEmpty(),
-                                "Статья с таким названием уже существует").get();
-                ctx.formParamAsClass("content", String.class)
+                        .check(value -> value.length() > 2, "Название не должно быть короче двух символов")
+                        .check(value -> ArticleRepository.getEntities().stream()
+                                .noneMatch(art -> art.getTitle().equals(value)),
+                                "Статья с таким названием уже существует")
+                        .get();
+                 ctx.formParamAsClass("content", String.class)
                         .check(value -> value.length() >= 10, "Статья должна быть не короче 10 символов")
                         .get();
                 var article = new Article(title, content);
@@ -54,7 +54,7 @@ public final class App {
                 ctx.redirect("/articles");
             } catch (ValidationException e) {
                 var page = new BuildArticlePage(title, content, e.getErrors());
-                ctx.render("articles/build.jte", model("page", page));
+                ctx.status(422).render("articles/build.jte", model("page", page));
             }
         });
         // END
