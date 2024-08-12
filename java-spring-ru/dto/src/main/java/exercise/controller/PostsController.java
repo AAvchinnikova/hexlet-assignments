@@ -2,7 +2,6 @@ package exercise.controller;
 
 import exercise.model.Comment;
 import exercise.repository.CommentRepository;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +43,7 @@ public class PostsController {
         return commentDTO;
     }
 
-        @GetMapping
+    @GetMapping
     public List<PostDTO> index() {
         var posts = postRepository.findAll();
         var result = posts.stream()
