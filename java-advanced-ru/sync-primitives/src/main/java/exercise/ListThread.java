@@ -19,8 +19,7 @@ public class ListThread extends Thread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            int number = (int) Math.random();
-            safetyList.add(number);
+            safetyList.add(i);
         }
     }
 }
