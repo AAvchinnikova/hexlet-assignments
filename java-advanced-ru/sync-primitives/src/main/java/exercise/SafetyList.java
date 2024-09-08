@@ -2,7 +2,7 @@ package exercise;
 
 class SafetyList {
     // BEGIN
-    private int[] numbers;
+    private int[] numbers = new int[0];
 
     public SafetyList(int[] numbers) {
         this.numbers = numbers;
@@ -12,10 +12,10 @@ class SafetyList {
 
     }
 
-    public synchronized void add(int number) {
+    public synchronized void add(int value) {
         var newNumbers = new int[numbers.length + 1];
         System.arraycopy(numbers, 0, newNumbers, 0, numbers.length);
-        newNumbers[numbers.length] = number;
+        newNumbers[numbers.length] = value;
         numbers = newNumbers;
     }
 

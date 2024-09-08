@@ -4,10 +4,10 @@ class App {
 
     public static void main(String[] args) {
         // BEGIN
-        SafetyList safetyList = new SafetyList();
+        SafetyList list = new SafetyList();
 
-        ListThread listThread1 = new ListThread(safetyList);
-        ListThread listThread2 = new ListThread(safetyList);
+        ListThread listThread1 = new ListThread(list);
+        ListThread listThread2 = new ListThread(list);
 
         listThread1.start();
         listThread2.start();
@@ -19,7 +19,7 @@ class App {
             e.printStackTrace();
         }
 
-        System.out.println(safetyList.getSize());
+        System.out.println(list.getSize());
         // END
     }
 }

@@ -3,23 +3,22 @@ package exercise;
 // BEGIN
 public class ListThread extends Thread{
 
-    private SafetyList safetyList;
+    SafetyList numbers;
 
-    public ListThread(SafetyList safetyList) {
-        this.safetyList = safetyList;
+    public ListThread(SafetyList numbers) {
+        this.numbers = numbers;
     }
 
     @Override
     public void run() {
 
-        for( var i = 0; i <= 1000; i++) {
-
+        for( var i = 0; i < 1000; i++) {
+            numbers.add(i);
             try {
-                ListThread.sleep(1);
+                sleep(1);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
-            safetyList.add(i);
         }
     }
 }
